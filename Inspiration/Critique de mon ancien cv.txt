@@ -1,0 +1,12 @@
+Point faible Cv actuel (Noah BERTRAND CV.pdf) : 
+
+-Il n’y a quasiment aucune expérience professionnelle réelle dans l'activité d'informatique.
+-Que des adjectifs vague rien de concret dans l'informatique encore une fois
+-Aucune trace de passion ou d’intérêt réel pour le domaine. Rien sur la programmation, 
+ la curiosité technologique, ni les projets personnels.
+-Le CV ressemble à un document Word de base, pas de structure visuelle et aucune interactivité.
+
+Pour y remédier : 
+Faire une site internet pour montrer une certaine compétence en informatique et changer d'un document word brut.
+Changer les adjectifs par les languages de programmation pratiqué et plutôt que de mettre mes diplomes comme le brevet ou bac
+français mettre les projets de mon bac sti2d et ceux de mon but info actuel

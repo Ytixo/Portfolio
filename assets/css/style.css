@@ -1,0 +1,162 @@
+* {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    background-color: rgba(254, 249, 246);
+}
+
+.pres-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: rgba(73, 76, 173);
+    margin: 1% 1% 0 2%;
+}
+
+.pres-top a {
+    color: rgba(73, 76, 173);
+}
+
+.pres-top-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-list {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+    background-color: rgba(73, 76, 173);
+}
+
+.menu-list a {
+    color: rgba(254, 249, 246);
+}
+
+.menu:hover .menu-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.pres-bottom {
+    position: flex;
+    text-align: center;
+    align-items: flex-end;
+    font-size: 6em;
+    margin-top: 2%;
+    color: rgba(73, 76, 173);
+}
+
+.pres-mid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pres-mid img {
+    margin-right: 1%;
+}
+
+.pres-mid p {
+    font-size: 1.5em;
+    color: rgba(73, 76, 173);
+}
+
+.formation-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 6em;
+    color: rgba(73, 76, 173);
+    margin: 0% 0% 3%;
+}
+
+.separateur {
+    border: 0;
+    height: 0.1em;
+    background: rgba(73, 76, 173);
+    width: 80%;
+    border-radius: 0.1em;
+}
+
+.formation-mid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30%;
+    margin-right: 30%; 
+}
+
+.formation-mid .iutnantes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.2em solid rgba(73, 76, 173);
+}
+
+.formation-mid h2 {
+    background-color: rgba(73, 76, 173);
+    color: white;
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 1% 0% 1%; 
+}
+
+.formation-mid h3 {
+    background-color: rgb(113, 116, 209);
+    color: white;
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 1% 0% 1%; 
+}
+
+.formation-mid p {
+    padding: 5%;
+    font-size: 1.5em;
+}
+
+.arrow p {
+    font-size: 5em;
+    color: rgb(113, 116, 209);
+}
+
+.formation-mid .bac{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.2em solid rgba(73, 76, 173);
+}
+
+.formation-mid .bac{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.2em solid rgba(73, 76, 173);
+}
+
+.formation-mid .brevet{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.2em solid rgba(73, 76, 173);
+}
+
+.footer {
+    margin: 5%;
+}
