@@ -29,22 +29,61 @@ body {
     flex-direction: column;
 }
 
-.menu-list {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s;
-    background-color: rgba(73, 76, 173);
+.menu {
+    position: relative;
+    cursor: pointer;
 }
 
-.menu-list a {
-    color: rgba(254, 249, 246);
+.menu > h2 {
+    font-size: 2rem;
+    padding: 0.4em 0.8em;
+    border-radius: 0.4em;
+    transition: background 0.3s ease;
+}
+
+.menu:hover > h2 {
+    background: rgba(73, 76, 173, 0.1);
+}
+
+.menu-list {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 220px;
+    margin-top: 10px;
+
+    background: linear-gradient(180deg, rgba(73, 76, 173), rgb(113, 116, 209));
+    border-radius: 0.8em;
+    padding: 0.5em 0;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    transition-delay: 0.1s;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.3);
 }
 
 .menu:hover .menu-list {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    transition-delay: 0s;
 }
+
+.menu-list a {
+    display: block;
+    padding: 0.8em 1.2em;
+    font-size: 1.4rem;
+    color: rgba(254, 249, 246);
+    transition: background 0.25s ease, padding-left 0.25s ease;
+}
+
+.menu-list a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    padding-left: 1.6em;
+}
+
 
 .pres-bottom {
     position: flex;
@@ -97,14 +136,6 @@ body {
     margin-right: 30%; 
 }
 
-.formation-mid .iutnantes{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 0.2em solid rgba(73, 76, 173);
-}
-
 .formation-mid h2 {
     background-color: rgba(73, 76, 173);
     color: white;
@@ -133,7 +164,7 @@ body {
     color: rgb(113, 116, 209);
 }
 
-.formation-mid .bac{
+.formation-mid div{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -141,22 +172,138 @@ body {
     border: 0.2em solid rgba(73, 76, 173);
 }
 
-.formation-mid .bac{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 0.2em solid rgba(73, 76, 173);
-}
-
-.formation-mid .brevet{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 0.2em solid rgba(73, 76, 173);
+.formation-mid .arrow {
+    border: none;
 }
 
 .footer {
     margin: 5%;
+}
+
+.projects-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap : 5%;
+    margin: 5%;
+}
+
+.project-card {
+  width: 25%;
+  height: 350px;
+  background: linear-gradient(180deg, rgba(73, 76, 173), rgb(113, 116, 209));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 0.5em;
+}
+
+.project-card p {
+    color: white;
+    font-size: 2.5rem;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.6);
+}
+
+.project-card:hover p {
+  transform: scale(1.05);
+}
+
+.content-block {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.content-block.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projets-mid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30%;
+    margin-right: 30%; 
+}
+
+.projets-mid h2 {
+    background-color: rgba(73, 76, 173);
+    color: white;
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 1% 0% 1%; 
+}
+
+.projets-mid h3 {
+    background-color: rgb(113, 116, 209);
+    color: white;
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 1% 0% 1%; 
+}
+
+.projets-mid p {
+    padding: 5%;
+    font-size: 1.5em;
+}
+
+.projets-mid div {
+    border: 0.2em solid rgba(73, 76, 173);
+}
+
+.wip-container {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgba(73, 76, 173);
+    padding: 2em;
+}
+
+.wip-container i {
+    font-size: 4rem;
+    margin-bottom: 0.5em;
+    color: rgb(113, 116, 209);
+}
+
+.wip-container h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5em;
+}
+
+.wip-container p {
+    font-size: 1.5rem;
+    max-width: 700px;
+    opacity: 0.8;
+    margin-bottom: 2em;
+}
+
+.wip-btn {
+    padding: 0.8em 2em;
+    border-radius: 0.5em;
+    background: linear-gradient(180deg, rgba(73, 76, 173), rgb(113, 116, 209));
+    color: white;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wip-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.3);
 }
