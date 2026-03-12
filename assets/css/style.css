@@ -52,7 +52,7 @@ body {
     min-width: 220px;
     margin-top: 10px;
 
-    background: linear-gradient(180deg, rgba(73, 76, 173), rgb(113, 116, 209));
+    background: rgba(73, 76, 173);
     border-radius: 0.8em;
     padding: 0.5em 0;
 
@@ -191,7 +191,7 @@ body {
 .project-card {
   width: 25%;
   height: 350px;
-  background: linear-gradient(180deg, rgba(73, 76, 173), rgb(113, 116, 209));
+  background: rgba(73, 76, 173);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -221,12 +221,18 @@ body {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.4s ease, transform 0.4s ease;
+  margin-bottom: 5%;
 }
 
 .content-block.active {
   display: block;
   opacity: 1;
   transform: translateY(0);
+}
+
+.content-block p a i {
+    color: darkorchid;
+    text-decoration: none;
 }
 
 .projets-mid {
