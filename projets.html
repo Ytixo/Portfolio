@@ -34,37 +34,59 @@
         <h1>Projets 💻</h1>
         <hr class="separateur">
     </div>
-    <div class="projects-container">
-        <div class="project-card" data-target="pro"><p>Projet Pro</p></div>
-        <div class="project-card" data-target="perso"><p>Projet Perso</p></div>
-        <div class="project-card" data-target="academique"><p>Projet Académique</p></div>
+    
+    <div class="carousel-section">
+        <div class="carousel-track-wrapper">
+            <button class="carousel-btn prev" aria-label="Précédent">&#8592;</button>
+            <div class="carousel-track">
+                <div class="carousel-slide active" data-type="pro">
+                    <div class="slide-label">Projet Pro</div>
+                    <div class="slide-content">
+                        <h2>Le Fournil du Bousquet 🥖</h2>
+                        <h3>Targon</h3>
+                        <p>Développement d'un site web pour la boulangerie de mon père.</p>
+                        <div class="slide-links">
+                            <a target="_blank" href="https://github.com/Ytixo/lefournildubousquet"><i class="fa-brands fa-square-github"></i> GitHub</a>
+                            <a target="_blank" href="https://ytixo.github.io/lefournildubousquet"><i class="fa-solid fa-globe"></i> Site</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide" data-type="perso">
+                    <div class="slide-label">Projet Perso</div>
+                    <div class="slide-content">
+                        <h2>Projet à venir 🚧</h2>
+                        <h3>En cours</h3>
+                        <p>Ce projet est actuellement en cours de réflexion ou de développement.</p>
+                    </div>
+                </div>
+                <div class="carousel-slide" data-type="academique">
+                    <div class="slide-label">Projet Académique</div>
+                    <div class="slide-content">
+                        <h2>Go-Particles</h2>
+                        <h3>IUT de Nantes</h3>
+                        <p>Application de simulation de particules développée en Go.</p>
+                        <div class="slide-links">
+                            <a target="_blank" href="https://github.com/Ytixo/Go-Particles"><i class="fa-brands fa-square-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-slide" data-type="academique">
+                    <div class="slide-label">Projet Académique</div>
+                    <div class="slide-content">
+                        <h2>La Bouteille Enchantée 🍷</h2>
+                        <h3>IUT de Nantes</h3>
+                        <p>Site de boutique de vin développé dans le cadre du cursus.</p>
+                        <div class="slide-links">
+                            <a target="_blank" href="https://github.com/Ytixo/labouteilleenchantee"><i class="fa-brands fa-square-github"></i> GitHub</a>
+                            <a target="_blank" href="https://ytixo.github.io/labouteilleenchantee"><i class="fa-solid fa-globe"></i> Site</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn next" aria-label="Suivant">&#8594;</button>
+        </div>
+        <div class="carousel-dots"></div>
     </div>
-
-    <div class="projets-mid">
-        <div class="content-block" data-type="academique">
-            <h2>Projet Go-Particles</h2>
-            <h3>IUT de Nantes</h3>
-            <p>Projet Go-Particles - Développement d'une application de simulation de particules en Go. <br> <a target="_blank" href="https://github.com/Ytixo/Go-Particles">➡️<i class="fa-brands fa-square-github"></i></a></p>
-        </div>
-
-        <div class="content-block" data-type="academique">
-            <h2>La bouteille enchantée 🍷</h2>
-            <h3>IUT de Nantes</h3>
-            <p>Projet La bouteille enchantée - Développement d'un site de boutique de vin. <br> <a target="_blank" href="https://github.com/Ytixo/labouteilleenchantee">➡️<i class="fa-brands fa-square-github"></i></a><a target="_blank" href="https://ytixo.github.io/labouteilleenchantee"> ➡️<i class="fa-solid fa-globe" style="color: rgb(177, 151, 252);"></i></a></p>
-        </div>
-
-        <div class="content-block" data-type="pro">
-            <h2>Le Fournil du Bousquet 🥖</h2>
-            <h3>Targon</h3>
-            <p>Projet Le Fournil du Bousquet - Développement d'un site web pour la boulangerie de mon père <br> <a target="_blank" href="https://github.com/Ytixo/lefournildubousquet">➡️<i class="fa-brands fa-square-github"></i></a><a target="_blank" href="https://ytixo.github.io/lefournildubousquet"> ➡️<i class="fa-solid fa-globe" style="color: rgb(177, 151, 252);"></i></a></p>
-        </div>
-
-        <div class="content-block" data-type="perso">
-            <h2>Projet à venir 🚧</h2>
-            <p>Ce projet est actuellement en cours de réflexion ou de développement.</p>
-        </div>
-    </div>
-
     <div class="footer"></div>
     <script src="assets/script/script.js"></script>
 </body>

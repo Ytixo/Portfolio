@@ -193,98 +193,136 @@ body {
     margin: 5%;
 }
 
-.projects-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-    margin: 5%;
-}
-
-.project-card {
-  width: 300px;
-  height: 300px;
-  background: rgba(73, 76, 173);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 0.5em;
-}
-
-.project-card p {
-    color: white;
-    font-size: 2.5rem;
-    transition: opacity 0.3s ease;
-}
-
-.project-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.6);
-}
-
-.project-card:hover p {
-  transform: scale(1.05);
-}
-
-.content-block {
-  display: none;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  margin-bottom: 5%;
-  width: 80%;
-}
-
-.content-block.active {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.content-block p a i {
-    color: darkorchid;
-    text-decoration: none;
-}
-
-.projets-mid {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
+/* ── CAROUSEL ── */
+.carousel-section {
+    margin: 0 auto 6%;
     max-width: 900px;
-    margin: auto;
+    padding: 0 1em;
 }
 
-.projets-mid h2 {
+.carousel-track-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.carousel-track {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 0.8em;
+    border: 0.2em solid rgba(73, 76, 173);
+    position: relative;
+    min-height: 300px;
+}
+
+.carousel-slide {
+    display: none;
+    flex-direction: column;
+    animation: slideFadeIn 0.4s ease;
+}
+
+.carousel-slide.active {
+    display: flex;
+}
+
+@keyframes slideFadeIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.slide-label {
     background-color: rgba(73, 76, 173);
     color: white;
-    width: 100%;
-    display: block;
     text-align: center;
-    padding: 1% 0% 1%; 
+    padding: 0.6em 1em;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
 }
 
-.projets-mid h3 {
-    background-color: rgb(113, 116, 209);
+.slide-content {
+    padding: 5% 8%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+}
+
+.slide-content h2 {
+    font-size: 2rem;
+    color: rgba(73, 76, 173);
+}
+
+.slide-content h3 {
+    font-size: 1.3rem;
+    color: rgb(113, 116, 209);
+}
+
+.slide-content p {
+    font-size: 1.3rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+.slide-links {
+    display: flex;
+    gap: 1.2em;
+    margin-top: 0.5em;
+}
+
+.slide-links a {
+    font-size: 1.3rem;
+    color: rgba(73, 76, 173);
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    transition: color 0.2s ease;
+}
+
+.slide-links a:hover {
+    color: darkorchid;
+}
+
+/* Boutons fléchés */
+.carousel-btn {
+    background: rgba(73, 76, 173);
     color: white;
-    width: 100%;
-    display: block;
-    text-align: center;
-    padding: 1% 0% 1%; 
+    border: none;
+    border-radius: 50%;
+    width: 2.8em;
+    height: 2.8em;
+    font-size: 1.4rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.projets-mid p {
-    padding: 5%;
-    font-size: 1.5em;
+.carousel-btn:hover {
+    background: rgb(113, 116, 209);
+    transform: scale(1.1);
 }
 
-.projets-mid div {
-    border: 0.2em solid rgba(73, 76, 173);
+/* Points de navigation */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.6em;
+    margin-top: 1.2em;
 }
+
+.carousel-dot {
+    width: 0.75em;
+    height: 0.75em;
+    border-radius: 50%;
+    background: rgb(113, 116, 209, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.carousel-dot.active {
+    background: rgba(73, 76, 173);
+    transform: scale(1.25);
+}
+
 
 .wip-container {
     min-height: 70vh;
@@ -408,4 +446,13 @@ body {
     .wip-container p {
         font-size: 1.2rem;
     }
+
+    .carousel-btn {
+        width: 2.2em;
+        height: 2.2em;
+        font-size: 1.1rem;
+    }
+
+    .slide-content h2 { font-size: 1.5rem; }
+    .slide-label { font-size: 1.4rem; }
 }
