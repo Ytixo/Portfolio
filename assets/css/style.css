@@ -597,11 +597,15 @@ body {
     }
 
     .see-more-btn {
-        font-size: 1rem;
-        padding: 0.1em 0.5em;
+        width: 100%;
+        justify-content: center;
     }
 
     .popup-images-track {
         align-self: stretch;
+    }
+
+    .slide-links {
+        flex-wrap: wrap;
     }
 }
