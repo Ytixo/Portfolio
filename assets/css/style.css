@@ -316,6 +316,7 @@ body {
     border: none;
     cursor: pointer;
     transition: background 0.25s ease, transform 0.25s ease;
+    z-index: 1000;
 }
 
 .carousel-dot.active {
@@ -323,6 +324,127 @@ body {
     transform: scale(1.25);
 }
 
+/* ── POPUP ── */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-overlay.open {
+    display: flex;
+}
+
+.popup-box {
+    background: white;
+    border-radius: 1em;
+    padding: 2.5em 2em 1.5em;
+    width: 90%;
+    max-width: 950px;
+    height: 600px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+.close-popup {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    border: 0;
+    width: 2.2em;
+    height: 2.2em;
+    background: rgba(73, 76, 173);
+    border-radius: 50%;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.close-popup:hover {
+    background: rgb(113, 116, 209);
+}
+
+.popup-slider {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+}
+
+.popup-images-track {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 0.6em;
+    height: 100%;
+}
+
+.popup-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 0.6em;
+    animation: slideFadeIn 0.3s ease;
+}
+
+.popup-arrow {
+    background: rgba(73, 76, 173);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 2.4em;
+    height: 2.4em;
+    font-size: 1.2rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.popup-arrow:hover {
+    background: rgb(113, 116, 209);
+    transform: scale(1.1);
+}
+
+.popup-counter {
+    font-size: 1rem;
+    color: rgb(113, 116, 209);
+}
+
+/* Bouton Voir plus */
+.see-more-btn {
+    background: none;
+    border: 0.1em solid rgba(73, 76, 173);
+    border-radius: 0.4em;
+    color: rgba(73, 76, 173);
+    font-size: 1.3rem;
+    font-family: "Oswald", sans-serif;
+    padding: 0.15em 0.7em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    transition: background 0.2s, color 0.2s;
+}
+
+.see-more-btn:hover {
+    background: rgba(73, 76, 173);
+    color: white;
+}
 
 .wip-container {
     min-height: 70vh;
@@ -366,6 +488,7 @@ body {
     transform: scale(1.05);
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.3);
 }
+
 
 @media (max-width: 700px) {
     .pres-top {
@@ -455,4 +578,30 @@ body {
 
     .slide-content h2 { font-size: 1.5rem; }
     .slide-label { font-size: 1.4rem; }
+
+    .popup-box {
+        height: 60vh;
+        padding: 3.5em 0.8em 1em;
+        width: 95%;
+    }
+
+    .popup-slider {
+        gap: 0.4em;
+    }
+
+    .popup-arrow {
+        width: 2em;
+        height: 2em;
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+
+    .see-more-btn {
+        font-size: 1rem;
+        padding: 0.1em 0.5em;
+    }
+
+    .popup-images-track {
+        align-self: stretch;
+    }
 }

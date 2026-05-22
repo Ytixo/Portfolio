@@ -79,6 +79,9 @@
                         <div class="slide-links">
                             <a target="_blank" href="https://github.com/Ytixo/labouteilleenchantee"><i class="fa-brands fa-square-github"></i> GitHub</a>
                             <a target="_blank" href="https://ytixo.github.io/labouteilleenchantee"><i class="fa-solid fa-globe"></i> Site</a>
+                            <button class="see-more-btn" data-images='["assets/img/bouteille_1.png","assets/img/bouteille_2.png", "assets/img/bouteille_3.png", "assets/img/bouteille_4.png"]'>
+                                <i class="fa-solid fa-images"></i> Voir plus
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -86,6 +89,19 @@
             <button class="carousel-btn next" aria-label="Suivant">&#8594;</button>
         </div>
         <div class="carousel-dots"></div>
+    </div>
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-box">
+            <button class="close-popup" id="closePopup">✕</button>
+            <div class="popup-slider">
+                <button class="popup-arrow pop-prev">&#8592;</button>
+                <div class="popup-images-track">
+                    <img class="popup-img" id="popupImg" src="" alt="Image du projet">
+                </div>
+                <button class="popup-arrow pop-next">&#8594;</button>
+            </div>
+            <div class="popup-counter" id="popupCounter">1 / 2</div>
+        </div>
     </div>
     <div class="footer"></div>
     <script src="assets/script/script.js"></script>
