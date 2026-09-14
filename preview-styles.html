@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aperçu des 3 Styles — Noah BERTRAND</title>
+
+  <!-- Google Fonts pour les 3 styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Oswald:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ==========================================================================
+       BARRE DE CONTRÔLE SUPÉRIEURE DE LA DÉMO
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #0f1218;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+
+    .demo-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: #181d27;
+      border-bottom: 1px solid #283141;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .demo-title-group h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .demo-title-group p {
+      font-size: 0.78rem;
+      color: #94a3b8;
+    }
+
+    .demo-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #0d1017;
+      padding: 0.3rem;
+      border-radius: 10px;
+      border: 1px solid #263040;
+    }
+
+    .demo-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .demo-tab-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .demo-tab-btn.active {
+      background: #3b82f6;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+    }
+
+    .demo-controls-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .demo-mode-btn {
+      background: #242c3b;
+      border: 1px solid #3a475e;
+      color: #f1f5f9;
+      padding: 0.5rem 0.95rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .demo-mode-btn:hover {
+      background: #2f3a4d;
+      border-color: #60a5fa;
+    }
+
+    /* Conteneur principal */
+    .preview-stage {
+      padding: 2rem 1.5rem 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Grille comparative côte à côte */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1100px) {
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .style-frame {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+    }
+
+    .style-frame-header {
+      background: #1c2230;
+      padding: 0.9rem 1.2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .style-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+    }
+
+    .style-frame-content {
+      flex: 1;
+      padding: 2.2rem 1.8rem;
+    }
+
+    /* Fiche explicative en bas */
+    .style-meta-card {
+      border-top: 1px solid var(--border);
+      background: var(--surface-subtle);
+      padding: 1.2rem 1.8rem;
+      font-size: 0.82rem;
+    }
+
+    /* ==========================================================================
+       STYLE 1 : ATELIER D'INGÉNIEUR & ÉDITORIAL (CHAUD / IVOIRE / INDIGO)
+       ========================================================================== */
+    .theme-editorial[data-variant="light"] {
+      --bg: #faf8f5;
+      --surface: #ffffff;
+      --surface-subtle: #f3f0ea;
+      --border: #e8e4db;
+      --border-accent: #3642a6;
+      --text: #191b1f;
+      --text-muted: #5e6573;
+      --primary: #3642a6; /* Indigo doux hérité du 1er portfolio */
+      --primary-hover: #2a3487;
+      --primary-subtle: #eeeffc;
+      --tag-bg: #f3efe6;
+      --tag-text: #41454e;
+      --accent-status: #15803d;
+      --accent-status-bg: #eaf6ed;
+      --card-shadow: 0 4px 16px rgba(45, 35, 20, 0.06);
+      --font-title: 'Fraunces', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    .theme-editorial[data-variant="dark"] {
+      --bg: #14161a;
+      --surface: #1b1f24;
+      --surface-subtle: #242930;
+      --border: #2e353f;
+      --border-accent: #6875f5;
+      --text: #f0f3f6;
+      --text-muted: #949ea8;
+      --primary: #6875f5;
+      --primary-hover: #7e8af8;
+      --primary-subtle: rgba(104, 117, 245, 0.15);
+      --tag-bg: #242930;
+      --tag-text: #d0d7de;
+      --accent-status: #4ade80;
+      --accent-status-bg: rgba(74, 222, 128, 0.12);
+      --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      --font-title: 'Fraunces', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    /* ==========================================================================
+       STYLE 2 : STUDIO TECH & MINIMALISTE (BLANC PUR / BLEU GITHUB)
+       ========================================================================== */
+    .theme-minimal[data-variant="light"] {
+      --bg: #ffffff;
+      --surface: #f8fafc;
+      --surface-subtle: #f1f5f9;
+      --border: #e2e8f0;
+      --border-accent: #0969da;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --primary: #0969da; /* Bleu GitHub d'ingénieur */
+      --primary-hover: #0752aa;
+      --primary-subtle: #ebf5ff;
+      --tag-bg: #f1f5f9;
+      --tag-text: #334155;
+      --accent-status: #10b981;
+      --accent-status-bg: #ecfdf5;
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px -6px rgba(0,0,0,0.04);
+      --font-title: 'Inter', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    .theme-minimal[data-variant="dark"] {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface-subtle: #21262d;
+      --border: #30363d;
+      --border-accent: #2f81f7;
+      --text: #c9d1d9;
+      --text-muted: #8b949e;
+      --primary: #2f81f7;
+      --primary-hover: #58a6ff;
+      --primary-subtle: rgba(47, 129, 247, 0.15);
+      --tag-bg: #21262d;
+      --tag-text: #e6edf3;
+      --accent-status: #3fb950;
+      --accent-status-bg: rgba(63, 185, 80, 0.15);
+      --card-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+      --font-title: 'Inter', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    /* ==========================================================================
+       STYLE 3 : SWISS IMPACT & OSWALD (HOMMAGE PORTFOLIO D'ORIGINE)
+       ========================================================================== */
+    .theme-swiss[data-variant="light"] {
+      --bg: #f8f6f0;
+      --surface: #ffffff;
+      --surface-subtle: #f0ece1;
+      --border: #ded8cb;
+      --border-accent: #494cad; /* Couleur exacte de ton premier portfolio */
+      --text: #111111;
+      --text-muted: #555555;
+      --primary: #494cad;
+      --primary-hover: #373a8f;
+      --primary-subtle: #eeeefc;
+      --tag-bg: #f0ece1;
+      --tag-text: #222222;
+      --accent-status: #0d9488;
+      --accent-status-bg: #e6f7f5;
+      --card-shadow: 4px 4px 0px #ded8cb; /* Ombre franche graphique */
+      --font-title: 'Oswald', sans-serif;
+      --font-body: 'DM Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    .theme-swiss[data-variant="dark"] {
+      --bg: #121316;
+      --surface: #1a1c21;
+      --surface-subtle: #23262d;
+      --border: #333842;
+      --border-accent: #7377d8;
+      --text: #f4f4f4;
+      --text-muted: #9fa6b2;
+      --primary: #7377d8;
+      --primary-hover: #8e92e8;
+      --primary-subtle: rgba(115, 119, 216, 0.15);
+      --tag-bg: #23262d;
+      --tag-text: #e2e4e9;
+      --accent-status: #2dd4bf;
+      --accent-status-bg: rgba(45, 212, 191, 0.15);
+      --card-shadow: 4px 4px 0px #23262d;
+      --font-title: 'Oswald', sans-serif;
+      --font-body: 'DM Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    /* Application générique des variables dans le mock */
+    .mock-zone {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.55;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Éléments internes du mock */
+    .mock-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1.3rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.8rem;
+    }
+
+    .mock-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      color: var(--text);
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+
+    .mock-brand-badge {
+      width: 28px;
+      height: 28px;
+      background: var(--primary);
+      color: #ffffff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+    }
+
+    .mock-nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .mock-nav-links span.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Hero */
+    .mock-hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.8rem;
+      background: var(--accent-status-bg);
+      color: var(--accent-status);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .mock-hero-pill .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-status);
+    }
+
+    .mock-title {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      line-height: 1.15;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.02em;
+    }
+
+    .theme-swiss .mock-title {
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1.08;
+    }
+
+    .mock-lead {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.4rem;
+    }
+
+    .mock-lead strong {
+      color: var(--text);
+    }
+
+    /* Boutons */
+    .mock-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .mock-btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 0.65rem 1.15rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      transition: all 0.18s;
+    }
+
+    .mock-btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.65rem 1.15rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .theme-swiss .mock-btn-primary, 
+    .theme-swiss .mock-btn-secondary {
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-family: var(--font-title);
+      letter-spacing: 0.05em;
+      font-size: 0.95rem;
+    }
+
+    /* Carte Projet dans le Mock */
+    .mock-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.3rem;
+      box-shadow: var(--card-shadow);
+      position: relative;
+    }
+
+    .theme-swiss .mock-card {
+      border-radius: 6px;
+    }
+
+    .mock-card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--primary);
+      background: var(--primary-subtle);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.55rem;
+    }
+
+    .mock-card-title {
+      font-family: var(--font-title);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .theme-swiss .mock-card-title {
+      font-size: 1.45rem;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+    }
+
+    .mock-card-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 1rem;
+    }
+
+    .mock-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .mock-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 0.2rem 0.55rem;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+    }
+
+    /* Info palette sous la carte */
+    .meta-palette-title {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .palette-swatches {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.15);
+      cursor: help;
+    }
+
+    .meta-traits {
+      list-style: none;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .meta-traits li {
+      position: relative;
+      padding-left: 1.1rem;
+    }
+
+    .meta-traits li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Vue plein écran d'un seul style */
+    .single-view {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================================================================
+       BARRE D'ACTIONS DU COMPARATEUR
+       ======================================================================== -->
+  <header class="demo-topbar">
+    <div class="demo-title-group">
+      <h1><i class="fa-solid fa-palette" style="color: #60a5fa;"></i> Direction Artistique — Portfolio Noah BERTRAND</h1>
+      <p>Compare les 3 styles en direct : fini le look IA, place à une vraie identité</p>
+    </div>
+
+    <!-- Onglets de sélection -->
+    <nav class="demo-tabs">
+      <button class="demo-tab-btn active" onclick="switchView('compare')">
+        <i class="fa-solid fa-table-columns"></i> Côte à Côte (3 styles)
+      </button>
+      <button class="demo-tab-btn" onclick="switchView('editorial')">
+        <i class="fa-solid fa-feather"></i> 1. Atelier & Éditorial
+      </button>
+      <button class="demo-tab-btn" onclick="switchView('minimal')">
+        <i class="fa-solid fa-cube"></i> 2. Studio Minimaliste
+      </button>
+      <button class="demo-tab-btn" onclick="switchView('swiss')">
+        <i class="fa-solid fa-font"></i> 3. Swiss & Oswald
+      </button>
+    </nav>
+
+    <!-- Toggle Sombre / Clair pour les démos -->
+    <div class="demo-controls-right">
+      <button class="demo-mode-btn" id="toggle-light-dark-btn" onclick="toggleGlobalVariant()">
+        <i class="fa-solid fa-sun" id="variant-icon"></i>
+        <span id="variant-label">Mode : Clair (Recommandé)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       SCÈNE DE VISUALISATION
+       ======================================================================== -->
+  <main class="preview-stage" id="preview-stage">
+
+    <div class="compare-grid" id="main-grid">
+
+      <!-- ====================================================================
+           STYLE 1 : ATELIER D'INGÉNIEUR & ÉDITORIAL
+           ==================================================================== -->
+      <article class="style-frame theme-editorial mock-zone" id="card-editorial" data-variant="light">
+        <div class="style-frame-header">
+          <div>
+            <span class="style-badge" style="background: #3642a6; color: #fff;">Option 1 • Coup de cœur</span>
+            <div style="font-weight: 700; color: #fff; margin-top: 0.2rem; font-size: 0.95rem;">Atelier & Éditorial</div>
+          </div>
+          <span style="font-size: 0.75rem; color: #94a3b8;">Warm Light + Indigo doux</span>
+        </div>
+
+        <div class="style-frame-content">
+          <!-- Navigation interne -->
+          <div class="mock-nav">
+            <div class="mock-brand">
+              <div class="mock-brand-badge">NB</div>
+              <span>Noah Bertrand</span>
+            </div>
+            <div class="mock-nav-links">
+              <span class="active">Accueil</span>
+              <span>Projets</span>
+              <span>CV</span>
+            </div>
+          </div>
+
+          <!-- Hero interne -->
+          <div class="mock-hero-pill">
+            <span class="dot"></span>
+            <span>BUT Informatique Nantes • En recherche de stage</span>
+          </div>
+
+          <h2 class="mock-title">
+            Ingénierie logicielle & architectures systèmes.
+          </h2>
+
+          <p class="mock-lead">
+            Bonjour, je suis <strong>Noah</strong>. Étudiant en 2ème année à l'IUT de Nantes. 
+            Je conçois des logiciels desktop réactifs, des outils de réseau et des infrastructures auto-hébergées.
+          </p>
+
+          <div class="mock-btn-row">
+            <button class="mock-btn-primary">
+              <i class="fa-solid fa-arrow-down"></i> Découvrir mes réalisations
+            </button>
+            <button class="mock-btn-secondary">
+              <i class="fa-solid fa-file-pdf"></i> Mon CV (PDF)
+            </button>
+          </div>
+
+          <!-- Carte Projet d'exemple -->
+          <div class="mock-card">
+            <div class="mock-card-tag">Stage Développeur • Idia Tech</div>
+            <h3 class="mock-card-title">Mocapia — Suite Desktop</h3>
+            <p class="mock-card-desc">
+              Application de post-production développée en Kotlin Multiplatform, Canvas Compose, dashboard SQL analytique et pipelines vidéo FFmpeg.
+            </p>
+            <div class="mock-tags">
+              <span class="mock-tag">Kotlin KMP</span>
+              <span class="mock-tag">Compose Desktop</span>
+              <span class="mock-tag">PostgreSQL</span>
+              <span class="mock-tag">FFmpeg</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fiche technique & explicative -->
+        <footer class="style-meta-card">
+          <div class="meta-palette-title">
+            <i class="fa-solid fa-swatchbook"></i> Palette & Typographie
+          </div>
+          <div class="palette-swatches">
+            <div class="swatch" style="background: #faf8f5;" title="Fond Ivoire Doux #faf8f5"></div>
+            <div class="swatch" style="background: #ffffff;" title="Surfaces Blanc Pur #ffffff"></div>
+            <div class="swatch" style="background: #3642a6;" title="Indigo Cobalt #3642a6"></div>
+            <div class="swatch" style="background: #191b1f;" title="Texte Encre #191b1f"></div>
+            <div class="swatch" style="background: #15803d;" title="Vert Statut #15803d"></div>
+          </div>
+          <ul class="meta-traits">
+            <li><strong>Polices</strong> : Fraunces (titres nobles) + Plus Jakarta Sans + JetBrains Mono.</li>
+            <li><strong>Ambiance</strong> : Chaleureuse, humaine, carnet d'ingénieur soigné.</li>
+            <li><strong>Zéro IA look</strong> : Pas de dégradé violet néon, ombres organiques feutrées.</li>
+          </ul>
+        </footer>
+      </article>
+
+      <!-- ====================================================================
+           STYLE 2 : STUDIO MINIMALISTE & GITHUB TECH
+           ==================================================================== -->
+      <article class="style-frame theme-minimal mock-zone" id="card-minimal" data-variant="light">
+        <div class="style-frame-header">
+          <div>
+            <span class="style-badge" style="background: #0969da; color: #fff;">Option 2 • Rigueur Tech</span>
+            <div style="font-weight: 700; color: #fff; margin-top: 0.2rem; font-size: 0.95rem;">Studio Minimaliste</div>
+          </div>
+          <span style="font-size: 0.75rem; color: #94a3b8;">Blanc Pur + Bleu Tech</span>
+        </div>
+
+        <div class="style-frame-content">
+          <!-- Navigation interne -->
+          <div class="mock-nav">
+            <div class="mock-brand">
+              <div class="mock-brand-badge" style="background: #0f172a;">NB</div>
+              <span>Noah Bertrand</span>
+            </div>
+            <div class="mock-nav-links">
+              <span class="active">Accueil</span>
+              <span>Projets</span>
+              <span>CV</span>
+            </div>
+          </div>
+
+          <!-- Hero interne -->
+          <div class="mock-hero-pill">
+            <span class="dot"></span>
+            <span>BUT Informatique Nantes • Recherche de stage</span>
+          </div>
+
+          <h2 class="mock-title">
+            Développeur Logiciel &amp; Systèmes.
+          </h2>
+
+          <p class="mock-lead">
+            Bonjour, je suis <strong>Noah</strong>. Spécialisé en conception logicielle propre, 
+            administration de serveurs Linux (Raspberry Pi, Caddy, Docker) et développement moderne.
+          </p>
+
+          <div class="mock-btn-row">
+            <button class="mock-btn-primary">
+              <i class="fa-solid fa-code"></i> Voir les projets
+            </button>
+            <button class="mock-btn-secondary">
+              <i class="fa-solid fa-download"></i> Télécharger CV
+            </button>
+          </div>
+
+          <!-- Carte Projet d'exemple -->
+          <div class="mock-card">
+            <div class="mock-card-tag">Système & Infrastructure</div>
+            <h3 class="mock-card-title">HomeLab & Serveur Personnel</h3>
+            <p class="mock-card-desc">
+              Raspberry Pi 5 auto-hébergé, reverse proxy Caddy avec Forward Auth, conteneurisation Docker, WoWLAN et accès sécurisé.
+            </p>
+            <div class="mock-tags">
+              <span class="mock-tag">Raspberry Pi 5</span>
+              <span class="mock-tag">Caddy Server</span>
+              <span class="mock-tag">Docker</span>
+              <span class="mock-tag">Linux</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fiche technique & explicative -->
+        <footer class="style-meta-card">
+          <div class="meta-palette-title">
+            <i class="fa-solid fa-swatchbook"></i> Palette & Typographie
+          </div>
+          <div class="palette-swatches">
+            <div class="swatch" style="background: #ffffff;" title="Blanc Pur #ffffff"></div>
+            <div class="swatch" style="background: #f8fafc;" title="Gris Perle #f8fafc"></div>
+            <div class="swatch" style="background: #0969da;" title="Bleu Tech #0969da"></div>
+            <div class="swatch" style="background: #0f172a;" title="Noir Carbone #0f172a"></div>
+            <div class="swatch" style="background: #10b981;" title="Vert Émeraude #10b981"></div>
+          </div>
+          <ul class="meta-traits">
+            <li><strong>Polices</strong> : Inter / Geist (ultra-nette, style GitHub & Linear).</li>
+            <li><strong>Ambiance</strong> : Précise, chirurgicale, codeur rigoureux et moderne.</li>
+            <li><strong>Zéro IA look</strong> : Bordures fines de 1px franches, hiérarchie par la typographie.</li>
+          </ul>
+        </footer>
+      </article>
+
+      <!-- ====================================================================
+           STYLE 3 : SWISS IMPACT & RETOUR D'OSWALD
+           ==================================================================== -->
+      <article class="style-frame theme-swiss mock-zone" id="card-swiss" data-variant="light">
+        <div class="style-frame-header">
+          <div>
+            <span class="style-badge" style="background: #494cad; color: #fff;">Option 3 • Ton ADN</span>
+            <div style="font-weight: 700; color: #fff; margin-top: 0.2rem; font-size: 0.95rem;">Swiss & Oswald</div>
+          </div>
+          <span style="font-size: 0.75rem; color: #94a3b8;">Crème + Typo Oswald originale</span>
+        </div>
+
+        <div class="style-frame-content">
+          <!-- Navigation interne -->
+          <div class="mock-nav">
+            <div class="mock-brand">
+              <div class="mock-brand-badge">NB</div>
+              <span style="font-family: 'Oswald', sans-serif; text-transform: uppercase; font-size: 1.15rem;">Noah Bertrand</span>
+            </div>
+            <div class="mock-nav-links">
+              <span class="active">Accueil</span>
+              <span>Projets</span>
+              <span>CV</span>
+            </div>
+          </div>
+
+          <!-- Hero interne -->
+          <div class="mock-hero-pill">
+            <span class="dot"></span>
+            <span>ÉTUDIANT INFORMATIQUE • NANTES</span>
+          </div>
+
+          <h2 class="mock-title">
+            DÉVELOPPEUR LOGICIEL &amp; SYSTÈMES
+          </h2>
+
+          <p class="mock-lead">
+            Salut, moi c'est <strong>Noah Bertrand</strong>. Étudiant en BUT Informatique à l'IUT de Nantes. 
+            Développement logiciel, algorithmique, réseaux et projets concrets.
+          </p>
+
+          <div class="mock-btn-row">
+            <button class="mock-btn-primary">
+              <i class="fa-solid fa-terminal"></i> EXPLORER LES PROJETS
+            </button>
+            <button class="mock-btn-secondary">
+              <i class="fa-solid fa-file"></i> TÉLÉCHARGER CV
+            </button>
+          </div>
+
+          <!-- Carte Projet d'exemple -->
+          <div class="mock-card">
+            <div class="mock-card-tag">Projet Académique • IUT Nantes</div>
+            <h3 class="mock-card-title">Go-Particles — Simulation</h3>
+            <p class="mock-card-desc">
+              Moteur de simulation de particules haute performance développé en Go avec interface graphique interactive.
+            </p>
+            <div class="mock-tags">
+              <span class="mock-tag">Go (Golang)</span>
+              <span class="mock-tag">Algorithmique</span>
+              <span class="mock-tag">Simulation</span>
+              <span class="mock-tag">Concurrence</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fiche technique & explicative -->
+        <footer class="style-meta-card">
+          <div class="meta-palette-title">
+            <i class="fa-solid fa-swatchbook"></i> Palette & Typographie
+          </div>
+          <div class="palette-swatches">
+            <div class="swatch" style="background: #f8f6f0;" title="Crème Atelier #f8f6f0"></div>
+            <div class="swatch" style="background: #ffffff;" title="Blanc Pur #ffffff"></div>
+            <div class="swatch" style="background: #494cad;" title="Indigo d'Origine #494cad"></div>
+            <div class="swatch" style="background: #111111;" title="Noir Imprimerie #111111"></div>
+            <div class="swatch" style="background: #0d9488;" title="Teal Atelier #0d9488"></div>
+          </div>
+          <ul class="meta-traits">
+            <li><strong>Polices</strong> : Oswald (comme ton 1er site) + DM Sans + JetBrains Mono.</li>
+            <li><strong>Ambiance</strong> : Graphique, affirmée, inspiration design suisse d'imprimerie.</li>
+            <li><strong>Zéro IA look</strong> : Typo condensée unique, ombres géométriques sans flou.</li>
+          </ul>
+        </footer>
+      </article>
+
+    </div>
+
+  </main>
+
+  <script>
+    let currentVariant = "light";
+
+    function toggleGlobalVariant() {
+      currentVariant = currentVariant === "light" ? "dark" : "light";
+      const cards = document.querySelectorAll(".mock-zone");
+      cards.forEach(card => card.setAttribute("data-variant", currentVariant));
+
+      const label = document.getElementById("variant-label");
+      const icon = document.getElementById("variant-icon");
+
+      if (currentVariant === "light") {
+        label.textContent = "Mode : Clair (Recommandé)";
+        icon.className = "fa-solid fa-sun";
+      } else {
+        label.textContent = "Mode : Sombre Élégant";
+        icon.className = "fa-solid fa-moon";
+      }
+    }
+
+    function switchView(viewName) {
+      const tabs = document.querySelectorAll(".demo-tab-btn");
+      tabs.forEach(tab => tab.classList.remove("active"));
+      
+      const grid = document.getElementById("main-grid");
+      const cardEditorial = document.getElementById("card-editorial");
+      const cardMinimal = document.getElementById("card-minimal");
+      const cardSwiss = document.getElementById("card-swiss");
+
+      if (viewName === "compare") {
+        tabs[0].classList.add("active");
+        grid.className = "compare-grid";
+        cardEditorial.style.display = "flex";
+        cardMinimal.style.display = "flex";
+        cardSwiss.style.display = "flex";
+      } else {
+        grid.className = "single-view";
+        cardEditorial.style.display = viewName === "editorial" ? "flex" : "none";
+        cardMinimal.style.display = viewName === "minimal" ? "flex" : "none";
+        cardSwiss.style.display = viewName === "swiss" ? "flex" : "none";
+
+        if (viewName === "editorial") tabs[1].classList.add("active");
+        if (viewName === "minimal") tabs[2].classList.add("active");
+        if (viewName === "swiss") tabs[3].classList.add("active");
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Système Maison & Petite Infra — Noah BERTRAND</title>
+  <meta name="description"
+    content="Voilà mon système maison : comment je gère ma petite infrastructure avec mon Raspberry Pi 5, Caddy Server, astroytixo.info, et le réveil de mon PC à distance en Wi-Fi (WoWLAN).">
+  <link rel="canonical" href="https://www.noahbertrand.fr/systeme.html">
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Mon Système Maison & Petite Infra — Noah Bertrand">
+  <meta property="og:description"
+    content="Découvrez ma petite infrastructure maison sur Raspberry Pi 5, Caddy Server, astroytixo.info et WoWLAN.">
+  <meta property="og:image" content="https://www.noahbertrand.fr/assets/img/infra_schema.svg">
+  <meta property="og:url" content="https://www.noahbertrand.fr/systeme.html">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mon Système Maison & Petite Infra — Noah Bertrand">
+  <meta name="twitter:description"
+    content="Découvrez ma petite infrastructure maison sur Raspberry Pi 5, Caddy Server, astroytixo.info et WoWLAN.">
+  <meta name="twitter:image" content="https://www.noahbertrand.fr/assets/img/infra_schema.svg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/img/logo.png" type="image/png">
+
+  <!-- Polices Google : Inter & JetBrains Mono (Studio Minimaliste) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Feuilles de style -->
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/systeme.css">
+</head>
+
+<body>
+
+  <!-- ==========================================
+       BARRE DE NAVIGATION (IDENTIQUE À L'INDEX)
+       ========================================== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html#accueil" class="nav-brand">
+        <img src="assets/img/logo.png" alt="Noah Bertrand" class="nav-logo-img dark-logo" width="36" height="36">
+        <img src="assets/img/logo-light.png" alt="Noah Bertrand" class="nav-logo-img light-logo" width="36" height="36">
+        <span>Noah Bertrand</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html#accueil" class="nav-link">Accueil</a></li>
+          <li><a href="index.html#projets" class="nav-link active">Projets</a></li>
+          <li><a href="index.html#competences" class="nav-link">Compétences</a></li>
+          <li><a href="index.html#parcours" class="nav-link">Parcours</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Bouton Thème Sombre / Clair -->
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Changer de thème"
+          title="Bascule mode sombre/clair">
+          <i class="fa-solid fa-sun" id="theme-icon"></i>
+        </button>
+
+        <!-- Télécharger le CV -->
+        <a href="assets/docs/BERTRAND_Noah_CV.pdf" download="Noah_BERTRAND_CV.pdf" class="btn btn-sm btn-primary">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <span>Mon CV</span>
+        </a>
+
+        <!-- Menu Mobile Burger -->
+        <button class="nav-mobile-toggle" id="nav-mobile-toggle" aria-label="Menu mobile">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Bouton de retour vers les projets -->
+    <div class="container" style="padding-top: 1.8rem; padding-bottom: 0.5rem;">
+      <a href="index.html#projets" class="btn btn-sm btn-secondary" style="gap: 0.6rem;">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Retour aux projets</span>
+      </a>
+    </div>
+
+    <!-- ==========================================
+         HERO SECTION — PETITE INFRA MAISON
+         ========================================== -->
+    <section class="sys-hero" id="accueil-infra" style="padding-top: 2rem;">
+      <div class="container sys-hero-grid">
+        <div>
+          <div class="sys-tag">
+            <i class="fa-solid fa-house-laptop"></i>
+            <span>Mon Home Lab Personnel</span>
+          </div>
+
+          <h1 class="sys-title">
+            Voilà mon système maison : <br>
+            <span class="text-gradient">comment je gère ma petite infra</span>
+          </h1>
+
+          <p class="sys-lead">
+            Bienvenue dans les coulisses de mon installation ! C'est comme ça que je gère ma petite infrastructure au
+            quotidien.
+            Sur un <strong>Raspberry Pi 5 (8 Go)</strong> branché à ma <strong>Box SFR</strong>, j'héberge mes petits
+            services utiles,
+            <strong>Caddy</strong> s'occupe de gérer mes domaines et le HTTPS en toute simplicité, et un simple bouton
+            sur mon dashboard me permet
+            d'allumer mon PC de travail à distance en Wi-Fi (<strong>WoWLAN</strong>) pour l'utiliser dans mon
+            navigateur avec <strong>noVNC</strong>.
+          </p>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="#architecture" class="btn btn-primary">
+              <i class="fa-solid fa-diagram-project"></i>
+              <span>Voir le schéma réseau</span>
+            </a>
+            <a href="#domaines" class="btn btn-secondary">
+              <i class="fa-solid fa-globe"></i>
+              <span>Mes services & Caddy</span>
+            </a>
+            <a href="#wowlan" class="btn btn-outline">
+              <i class="fa-solid fa-wifi"></i>
+              <span>Le réveil du PC (WoWLAN)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Fiche d'identité système simple -->
+        <div class="sys-hardware-card">
+          <div class="sys-hw-header">
+            <div class="sys-hw-title">
+              <div class="sys-hw-icon"><i class="fa-brands fa-raspberry-pi"></i></div>
+              <div>
+                <div>Raspberry Pi 5 (8 Go)</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">Le chef
+                  d'orchestre silencieux</div>
+              </div>
+            </div>
+            <span class="badge-status-ok">En ligne 24h/24</span>
+          </div>
+
+          <div class="sys-specs-list">
+            <div class="sys-spec-item">
+              <span class="sys-spec-label">Serveur</span>
+              <span class="sys-spec-val">Raspberry Pi 5 (8 Go RAM)</span>
+            </div>
+            <div class="sys-spec-item">
+              <span class="sys-spec-label">IP Locale Fixe</span>
+              <span class="sys-spec-val">192.168.0.50</span>
+            </div>
+            <div class="sys-spec-item">
+              <span class="sys-spec-label">Passerelle</span>
+              <span class="sys-spec-val">Box SFR (192.168.0.1)</span>
+            </div>
+            <div class="sys-spec-item">
+              <span class="sys-spec-label">Reverse Proxy</span>
+              <span class="sys-spec-val">Caddy Server (Auto HTTPS)</span>
+            </div>
+            <div class="sys-spec-item">
+              <span class="sys-spec-label">Mes Domaines</span>
+              <span class="sys-spec-val">astroytixo.info • noahbertrand.fr</span>
+            </div>
+            <div class="sys-spec-item">
+              <span class="sys-spec-label">PC de Travail</span>
+              <span class="sys-spec-val">Arch Linux (192.168.0.11)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 1 : SCHÉMA RÉSEAU VISUEL & INTERACTIF
+         ========================================== -->
+    <section class="section-wrapper" id="architecture" style="padding-top: 2rem;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fa-solid fa-sitemap"></i> Comment ça s'organise</span>
+          <h2 class="section-title">L'Architecture en un Coup d'Œil</h2>
+          <p class="section-desc">
+            Pas besoin de faire compliqué : 4 éléments qui communiquent ensemble de manière fluide et sécurisée.
+          </p>
+        </div>
+
+        <div class="network-schema-wrapper">
+          <div class="schema-toolbar">
+            <div class="schema-legend">
+              <div class="legend-item">
+                <span class="legend-dot legend-wan"></span>
+                <span>Mon PC / Téléphone dehors</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot legend-router"></span>
+                <span>Ma Box SFR</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot legend-server"></span>
+                <span>Mon Raspberry Pi 5</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot legend-lan"></span>
+                <span>Mon PC de travail (Arch Linux)</span>
+              </div>
+            </div>
+
+            <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">
+              <i class="fa-solid fa-hand-pointer"></i> Cliquez sur un élément pour voir son rôle
+            </span>
+          </div>
+
+          <!-- Les 4 cartes du réseau -->
+          <div class="network-diagram-grid">
+            <!-- Nœud 1 : WAN -->
+            <div class="net-node-card" data-node="wan">
+              <div class="net-node-header">
+                <div class="net-node-icon icon-wan"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <span class="net-node-badge badge-wan">Extérieur</span>
+              </div>
+              <h3 class="net-node-name">Moi à l'extérieur</h3>
+              <p class="net-node-ip">En cours à l'IUT ou en 4G</p>
+              <div class="net-node-tags">
+                <span class="net-mini-tag">astroytixo.info</span>
+                <span class="net-mini-tag">pc.noahbertrand.fr</span>
+                <span class="net-mini-tag">Accès sécurisé</span>
+              </div>
+            </div>
+
+            <!-- Nœud 2 : Box SFR -->
+            <div class="net-node-card" data-node="router">
+              <div class="net-node-header">
+                <div class="net-node-icon icon-router"><i class="fa-solid fa-tower-broadcast"></i></div>
+                <span class="net-node-badge badge-router">Passerelle</span>
+              </div>
+              <h3 class="net-node-name">Ma Box SFR</h3>
+              <p class="net-node-ip">192.168.0.1</p>
+              <div class="net-node-tags">
+                <span class="net-mini-tag">Redirection web (80, 443)</span>
+                <span class="net-mini-tag">Redirection SSH (22)</span>
+                <span class="net-mini-tag">Réseau local</span>
+              </div>
+            </div>
+
+            <!-- Nœud 3 : Raspberry Pi 5 -->
+            <div class="net-node-card active" data-node="pi">
+              <div class="net-node-header">
+                <div class="net-node-icon icon-server"><i class="fa-brands fa-raspberry-pi"></i></div>
+                <span class="net-node-badge badge-server">Raspberry Pi 5</span>
+              </div>
+              <h3 class="net-node-name">Serveur Pi 5</h3>
+              <p class="net-node-ip">192.168.0.50 (Fixe)</p>
+              <div class="net-node-tags">
+                <span class="net-mini-tag">Caddy Server</span>
+                <span class="net-mini-tag">Dashboard FastAPI</span>
+                <span class="net-mini-tag">Docker & Portainer</span>
+                <span class="net-mini-tag">Réveil WoWLAN</span>
+              </div>
+            </div>
+
+            <!-- Nœud 4 : PC Arch Linux -->
+            <div class="net-node-card" data-node="pc">
+              <div class="net-node-header">
+                <div class="net-node-icon icon-lan"><i class="fa-solid fa-desktop"></i></div>
+                <span class="net-node-badge badge-lan">PC de Bureau</span>
+              </div>
+              <h3 class="net-node-name">PC Arch Linux</h3>
+              <p class="net-node-ip">192.168.0.11 (Wi-Fi)</p>
+              <div class="net-node-tags">
+                <span class="net-mini-tag">Veille légère (Suspend)</span>
+                <span class="net-mini-tag">Réveil en Wi-Fi</span>
+                <span class="net-mini-tag">Écran noVNC</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panneau d'explication simple -->
+          <div class="network-inspector" id="network-inspector">
+            <div class="inspector-header">
+              <div class="inspector-title">
+                <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i>
+                <h4 id="insp-title">Raspberry Pi 5 (8 Go) — Le chef d'orchestre</h4>
+              </div>
+              <span class="status-pill" id="insp-badge" style="font-size: 0.75rem;">Serveur Maison</span>
+            </div>
+
+            <div class="inspector-grid">
+              <div>
+                <p id="insp-desc" style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.2rem;"></p>
+
+                <div
+                  style="display: grid; grid-template-columns: 1fr; gap: 0.6rem; font-size: 0.88rem; font-family: var(--font-mono);">
+                  <div><strong style="color: var(--text-primary);">Rôle :</strong> <span id="insp-role"
+                      style="color: var(--text-secondary);"></span></div>
+                  <div><strong style="color: var(--text-primary);">Adresse IP :</strong> <span id="insp-ip"
+                      style="color: var(--accent-cyan);"></span></div>
+                  <div><strong style="color: var(--text-primary);">Ports utilisés :</strong> <span id="insp-ports"
+                      style="color: var(--accent-amber);"></span></div>
+                  <div><strong style="color: var(--text-primary);">Protocoles :</strong> <span id="insp-proto"
+                      style="color: var(--accent-emerald);"></span></div>
+                </div>
+              </div>
+
+              <div>
+                <div
+                  style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); margin-bottom: 0.4rem;"
+                  id="insp-code-title">
+                  Aperçu
+                </div>
+                <div class="code-box" id="insp-code" style="font-size: 0.82rem;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Showcase visuel du schéma de l'infrastructure -->
+          <div class="sys-gallery-card" id="sys-gallery-card">
+            <div class="sys-gallery-header">
+              <div class="sys-gallery-title">
+                <i class="fa-solid fa-sitemap" style="color: var(--primary);"></i>
+                <h4>Schéma & Architecture Réseau</h4>
+              </div>
+            </div>
+            <div class="sys-schema-view">
+              <img src="assets/img/infra_schema.svg" alt="Schéma d'architecture de l'infrastructure réseau"
+                class="sys-schema-img" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 2 : MES SERVICES & CADDY SERVER
+         ========================================== -->
+    <section class="section-wrapper" id="domaines" style="background: rgba(0, 0, 0, 0.1);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fa-solid fa-globe"></i> Caddy & Noms de Domaine</span>
+          <h2 class="section-title">Mes Services & Sous-domaines</h2>
+          <p class="section-desc">
+            Pourquoi j'utilise <strong>Caddy Server</strong> ? Parce que c'est simple et moderne : pas de certificats
+            compliqués à configurer manuellement, il s'occupe de tout en HTTPS automatique.
+          </p>
+        </div>
+
+        <div class="sys-bento-grid">
+          <!-- Table claire des services -->
+          <div class="sys-card bento-col-8">
+            <div class="sys-card-header">
+              <div class="sys-card-icon"><i class="fa-solid fa-list-check"></i></div>
+              <div>
+                <h3 class="sys-card-title">Ce qui tourne sur mon Raspberry Pi</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">Mes
+                  sous-domaines accessibles</span>
+              </div>
+            </div>
+            <p class="sys-card-desc">
+              Dès qu'une requête arrive sur ma box SFR, Caddy regarde l'adresse demandée et l'envoie directement au bon
+              service :
+            </p>
+
+            <table class="subdomains-table">
+              <thead>
+                <tr>
+                  <th>Adresse Web</th>
+                  <th>Ce que c'est</th>
+                  <th>Sécurité</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>astroytixo.info</strong></td>
+                  <td>Mon Dashboard d'accueil (FastAPI) & bouton de réveil</td>
+                  <td><span class="badge-status-ok">Public (HTTPS)</span></td>
+                </tr>
+                <tr>
+                  <td><strong>ssh.astroytixo.info</strong></td>
+                  <td>Un terminal SSH directement dans mon navigateur (ttyd)</td>
+                  <td><span class="status-pill" style="font-size: 0.72rem; padding: 0.1rem 0.5rem;">Protégé</span></td>
+                </tr>
+                <tr>
+                  <td><strong>portainer.astroytixo.info</strong></td>
+                  <td>Interface visuelle pour gérer mes conteneurs Docker</td>
+                  <td><span class="status-pill" style="font-size: 0.72rem; padding: 0.1rem 0.5rem;">Protégé</span></td>
+                </tr>
+                <tr>
+                  <td><strong>codejelly.astroytixo.info</strong></td>
+                  <td>Mon outil de développement web Code Jelly</td>
+                  <td><span class="status-pill" style="font-size: 0.72rem; padding: 0.1rem 0.5rem;">Protégé</span></td>
+                </tr>
+                <tr>
+                  <td><strong>pc.noahbertrand.fr</strong></td>
+                  <td>L'écran de mon PC de bureau à distance avec noVNC</td>
+                  <td><span class="status-pill"
+                      style="font-size: 0.72rem; padding: 0.1rem 0.5rem; background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); border-color: rgba(245, 158, 11, 0.3);">Mot
+                      de passe</span></td>
+                </tr>
+                <tr>
+                  <td><strong>job.astroytixo.info</strong></td>
+                  <td>Gestion de mes tâches et scripts en tâche de fond</td>
+                  <td><span class="badge-status-ok">Actif</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Carte explicative simple sur la sécurité -->
+          <div class="sys-card bento-col-4">
+            <div class="sys-card-header">
+              <div class="sys-card-icon"><i class="fa-solid fa-key"></i></div>
+              <div>
+                <h3 class="sys-card-title">Une Seule Connexion</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">Forward Auth
+                  simple</span>
+              </div>
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem;">
+              Pour éviter de devoir taper un mot de passe différent sur chaque service, j'ai configuré un système tout
+              simple :
+            </p>
+            <ul style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; padding-left: 1.2rem;">
+              <li>Je me connecte une seule fois sur mon dashboard <strong>astroytixo.info</strong>.</li>
+              <li>Quand j'ouvre <code>ssh</code>, <code>portainer</code> ou <code>codejelly</code>, Caddy demande
+                discrètement à mon dashboard si c'est bien moi.</li>
+              <li>Si je suis connecté, j'accède à tout en 1 clic. Si je ne le suis pas, Caddy me redirige vers l'accueil
+                !</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3 : LE RÉVEIL DU PC À DISTANCE (WOWLAN)
+         ========================================== -->
+    <section class="section-wrapper" id="wowlan">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fa-solid fa-wifi"></i> Pratique au quotidien</span>
+          <h2 class="section-title">Comment j'allume mon PC depuis les cours</h2>
+          <p class="section-desc">
+            Mon PC sous Arch Linux reste en veille légère. Dès que j'en ai besoin, je l'allume en quelques secondes
+            depuis mon téléphone ou mon ordi portable.
+          </p>
+        </div>
+
+        <div class="sys-bento-grid">
+          <div class="sys-card bento-col-6">
+            <div class="sys-card-header">
+              <div class="sys-card-icon" style="background: var(--accent-cyan-bg); color: var(--accent-cyan);"><i
+                  class="fa-solid fa-lightbulb"></i></div>
+              <div>
+                <h3 class="sys-card-title">L'Astuce du Wi-Fi (WoWLAN)</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">Veille
+                  suspend</span>
+              </div>
+            </div>
+            <p class="sys-card-desc">
+              Comme mon PC est connecté en Wi-Fi et non en câble, une extinction complète couperait la connexion sans
+              fil. Pour régler ça simplement, mon PC est configuré pour se mettre en <strong>veille légère
+                (Suspend)</strong> : il ne consomme presque rien, mais sa carte Wi-Fi reste prête à entendre le paquet
+              de réveil !
+            </p>
+          </div>
+
+          <div class="sys-card bento-col-6">
+            <div class="sys-card-header">
+              <div class="sys-card-icon" style="background: var(--accent-emerald-bg); color: var(--accent-emerald);"><i
+                  class="fa-solid fa-desktop"></i></div>
+              <div>
+                <h3 class="sys-card-title">Le Contrôle avec noVNC</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">Dans le
+                  navigateur</span>
+              </div>
+            </div>
+            <p class="sys-card-desc">
+              Une fois que le PC s'est réveillé en 2-3 secondes, je vais sur <strong>pc.noahbertrand.fr</strong> : j'ai
+              directement l'écran complet de mon PC dans mon navigateur web grâce à noVNC, sans avoir besoin d'installer
+              de logiciel compliqué sur la machine d'où je me connecte.
+            </p>
+          </div>
+        </div>
+
+        <!-- Les 4 étapes en clair -->
+        <div
+          style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 2rem; margin-top: 1rem;">
+          <h3 style="font-size: 1.15rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem;">
+            <i class="fa-solid fa-route" style="color: var(--accent-emerald);"></i>
+            <span>En résumé, comment ça se passe en pratique :</span>
+          </h3>
+
+          <div class="wol-steps-track">
+            <div class="wol-step-item">
+              <div class="wol-step-num">1</div>
+              <div class="wol-step-content">
+                <h4>1. J'ouvre mon dashboard</h4>
+                <p>Depuis les cours ou dehors, je vais sur <code>astroytixo.info</code> et je clique sur le bouton de
+                  réveil.</p>
+              </div>
+            </div>
+
+            <div class="wol-step-item">
+              <div class="wol-step-num">2</div>
+              <div class="wol-step-content">
+                <h4>2. Le Raspberry Pi diffuse l'ordre</h4>
+                <p>Mon Raspberry Pi 5, toujours allumé à la maison, envoie le paquet magique sur le réseau Wi-Fi local.
+                </p>
+              </div>
+            </div>
+
+            <div class="wol-step-item">
+              <div class="wol-step-num">3</div>
+              <div class="wol-step-content">
+                <h4>3. Mon PC sous Arch Linux se réveille</h4>
+                <p>En 2 à 3 secondes, mon PC sort de veille et ses services redeviennent actifs.</p>
+              </div>
+            </div>
+
+            <div class="wol-step-item">
+              <div class="wol-step-num">4</div>
+              <div class="wol-step-content">
+                <h4>4. Je prends la main dans mon navigateur</h4>
+                <p>J'ouvre <code>pc.noahbertrand.fr</code> et je retrouve mon bureau Linux complet sur mon écran !</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         BANNIÈRE DE RETOUR
+         ========================================== -->
+    <section class="container" style="padding-bottom: 4rem;">
+      <div class="sys-back-banner" style="margin: 2rem 0 0 0;">
+        <h3>Voilà mon petit système maison !</h3>
+        <p>
+          C'est simple, pratique et ça répond parfaitement à mes besoins au quotidien. N'hésitez pas à jeter un œil à
+          mes autres projets de développement.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="index.html#projets" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-laptop-code"></i>
+            <span>Voir mes autres projets (Go, Kotlin, Python)</span>
+          </a>
+          <a href="assets/docs/BERTRAND_Noah_CV.pdf" download="Noah_BERTRAND_CV.pdf" class="btn btn-secondary btn-lg">
+            <i class="fa-solid fa-download"></i>
+            <span>Télécharger mon CV</span>
+          </a>
+          <a href="index.html#contact" class="btn btn-outline btn-lg">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Me Contacter</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       FOOTER (IDENTIQUE À L'INDEX)
+       ========================================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">Noah Bertrand</div>
+      <p style="color: var(--text-muted); max-width: 500px;">
+        Étudiant en BUT Informatique à l'IUT de Nantes. Développeur passionné par le génie logiciel, l'administration
+        système Linux et les architectures réseau modernes.
+      </p>
+
+      <nav class="footer-nav">
+        <a href="index.html#accueil">Accueil</a>
+        <a href="index.html#projets">Projets</a>
+        <a href="index.html#competences">Compétences</a>
+        <a href="index.html#parcours">Parcours</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/noah-bertrand-42a3a7375/" target="_blank" rel="noopener noreferrer"
+          class="social-circle-btn" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/Ytixo" target="_blank" rel="noopener noreferrer" class="social-circle-btn"
+          aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="mailto:luzrobertrand@gmail.com" class="social-circle-btn" aria-label="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+        <a href="assets/docs/BERTRAND_Noah_CV.pdf" download="Noah_BERTRAND_CV.pdf" class="social-circle-btn"
+          aria-label="CV">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Noah BERTRAND — astroytixo.info & noahbertrand.fr • Tous droits réservés.</span>
+        <span>HTML5, CSS3 Moderne & JavaScript Natif. 🚀</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts JavaScript -->
+  <script src="assets/js/systeme.js"></script>
+</body>
+
+</html>

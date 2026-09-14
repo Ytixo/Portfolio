@@ -1,0 +1,90 @@
+/* ==============================================================================
+   VARIABLES & DESIGN TOKENS — STUDIO MINIMALISTE (NOAH BERTRAND)
+   ============================================================================== */
+
+:root,
+[data-theme="light"] {
+  /* Typographie épurée & lisible */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Rayons & Transitions équilibrés */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Thème Clair par Défaut (Style Studio Minimaliste / GitHub Tech) */
+  --bg-main: #ffffff;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f8fafc;
+  --bg-surface-glass: rgba(255, 255, 255, 0.92);
+  --bg-code: #f1f5f9;
+
+  --border-subtle: #e2e8f0;
+  --border-hover: #cbd5e1;
+  --border-accent: #0969da;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+
+  --primary: #0969da;
+  --primary-hover: #0752aa;
+  --primary-light: #ebf5ff;
+  --primary-glow: rgba(9, 105, 218, 0.12);
+
+  --accent-cyan: #0284c7;
+  --accent-cyan-bg: #e0f2fe;
+  --accent-emerald: #10b981;
+  --accent-emerald-bg: #ecfdf5;
+  --accent-amber: #d97706;
+
+  /* Ombres naturelles douces, pas de néon */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 28px -4px rgba(15, 23, 42, 0.1);
+  --shadow-glow: 0 0 0 1px var(--border-subtle);
+
+  --max-width: 1160px;
+}
+
+/* Thème Sombre Sobre (Style GitHub Dark & Linear — sans néon violet) */
+[data-theme="dark"] {
+  --bg-main: #0d1117;
+  --bg-surface: #161b22;
+  --bg-surface-elevated: #21262d;
+  --bg-surface-glass: rgba(22, 27, 34, 0.9);
+  --bg-code: #161b22;
+
+  --border-subtle: #30363d;
+  --border-hover: #8b949e;
+  --border-accent: #2f81f7;
+
+  --text-primary: #f0f6fc;
+  --text-secondary: #8b949e;
+  --text-muted: #6e7681;
+  --text-inverse: #0d1117;
+
+  --primary: #2f81f7;
+  --primary-hover: #58a6ff;
+  --primary-light: rgba(47, 129, 247, 0.15);
+  --primary-glow: rgba(47, 129, 247, 0.18);
+
+  --accent-cyan: #38bdf8;
+  --accent-cyan-bg: rgba(56, 189, 248, 0.12);
+  --accent-emerald: #3fb950;
+  --accent-emerald-bg: rgba(63, 185, 80, 0.15);
+  --accent-amber: #d29922;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 0 1px var(--border-subtle);
+}

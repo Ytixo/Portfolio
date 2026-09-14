@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <style>
+    .grid-line { stroke: rgba(255, 255, 255, 0.04); stroke-width: 1; }
+    .conn-line { stroke: rgba(99, 102, 241, 0.35); stroke-width: 2.5; stroke-dasharray: 6 6; }
+    .active-line { stroke: #38bdf8; stroke-width: 2; stroke-dasharray: 4 4; }
+    .wol-line { stroke: #10b981; stroke-width: 2.5; stroke-dasharray: 5 5; }
+    .node-box { fill: #151c2e; stroke: rgba(99, 102, 241, 0.4); stroke-width: 1.5; rx: 12px; }
+    .node-title { fill: #f8fafc; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 14px; font-weight: 700; }
+    .node-sub { fill: #94a3b8; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+    .node-tag { fill: #38bdf8; font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+    .pulse-dot { fill: #10b981; filter: url(#glow); }
+  </style>
+
+  <!-- Arrière-plan sombre élégant -->
+  <rect width="800" height="450" fill="url(#bgGradient)" rx="16" />
+
+  <!-- Grille subtile en arrière-plan -->
+  <g>
+    <line x1="100" y1="0" x2="100" y2="450" class="grid-line" />
+    <line x1="250" y1="0" x2="250" y2="450" class="grid-line" />
+    <line x1="400" y1="0" x2="400" y2="450" class="grid-line" />
+    <line x1="550" y1="0" x2="550" y2="450" class="grid-line" />
+    <line x1="700" y1="0" x2="700" y2="450" class="grid-line" />
+    <line x1="0" y1="90" x2="800" y2="90" class="grid-line" />
+    <line x1="0" y1="180" x2="800" y2="180" class="grid-line" />
+    <line x1="0" y1="270" x2="800" y2="270" class="grid-line" />
+    <line x1="0" y1="360" x2="800" y2="360" class="grid-line" />
+  </g>
+
+  <!-- Titre et statut supérieur -->
+  <g transform="translate(30, 40)">
+    <circle cx="10" cy="10" r="5" class="pulse-dot" />
+    <text x="25" y="14" fill="#10b981" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600">INFRASTRUCTURE OPÉRATIONNELLE • 24/7 UP</text>
+    <text x="25" y="34" fill="#f8fafc" font-family="'Space Grotesk', sans-serif" font-size="18" font-weight="700">Raspberry Pi 5 (8 Go) • Caddy • astroytixo.info</text>
+  </g>
+
+  <!-- LIGNES DE CONNEXION RÉSEAU -->
+  <!-- WAN -> Box SFR -->
+  <path d="M 170 225 L 260 225" class="conn-line" />
+  <!-- Box SFR -> Raspberry Pi 5 -->
+  <path d="M 390 225 L 460 225" class="conn-line" />
+  <!-- Raspberry Pi 5 -> PC Cible (WoWLAN Wi-Fi Magic Packet) -->
+  <path d="M 600 225 C 625 225, 625 320, 640 320" class="wol-line" />
+  <!-- Raspberry Pi 5 -> Services Web / Caddy -->
+  <path d="M 600 225 C 625 225, 625 130, 640 130" class="active-line" />
+
+  <!-- NŒUD 1 : WAN / CLIENT DISTANT -->
+  <g transform="translate(40, 175)">
+    <rect width="130" height="100" class="node-box" />
+    <circle cx="25" cy="30" r="14" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="1.5" />
+    <path d="M 20 30 A 5 5 0 0 0 30 30 A 5 5 0 0 0 20 30 M 17 30 L 33 30 M 25 22 L 25 38" stroke="#38bdf8" stroke-width="1.2" fill="none" />
+    <text x="48" y="34" class="node-title">Client WAN</text>
+    <text x="18" y="65" class="node-sub">Nomade / IUT</text>
+    <text x="18" y="83" class="node-tag">HTTP/3 / SSH / VNC</text>
+  </g>
+
+  <!-- NŒUD 2 : BOX SFR (NAT/PAT) -->
+  <g transform="translate(260, 175)">
+    <rect width="130" height="100" class="node-box" />
+    <circle cx="25" cy="30" r="14" fill="rgba(245, 158, 11, 0.15)" stroke="#f59e0b" stroke-width="1.5" />
+    <rect x="18" y="26" width="14" height="8" rx="2" stroke="#f59e0b" stroke-width="1.2" fill="none" />
+    <line x1="21" y1="23" x2="21" y2="26" stroke="#f59e0b" stroke-width="1.2" />
+    <line x1="29" y1="23" x2="29" y2="26" stroke="#f59e0b" stroke-width="1.2" />
+    <text x="48" y="34" class="node-title">Box SFR</text>
+    <text x="18" y="65" class="node-sub">192.168.0.1</text>
+    <text x="18" y="83" class="node-tag">NAT : 80, 443, 22</text>
+  </g>
+
+  <!-- NŒUD 3 : RASPBERRY PI 5 (8 GO) -->
+  <g transform="translate(460, 155)">
+    <rect width="140" height="140" rx="14" fill="#18223c" stroke="url(#primaryGrad)" stroke-width="2.5" filter="url(#glow)" />
+    <rect width="140" height="140" rx="14" fill="#131b2e" stroke="url(#primaryGrad)" stroke-width="2" />
+    <circle cx="30" cy="30" r="16" fill="rgba(99, 102, 241, 0.2)" stroke="#818cf8" stroke-width="1.5" />
+    <rect x="23" y="24" width="14" height="12" rx="2" stroke="#818cf8" stroke-width="1.5" fill="none" />
+    <circle cx="27" cy="30" r="1.5" fill="#818cf8" />
+    <circle cx="33" cy="30" r="1.5" fill="#10b981" />
+    <text x="54" y="35" class="node-title">RPi 5 (8 Go)</text>
+    <text x="16" y="66" class="node-sub">192.168.0.50 (Fixe)</text>
+    <text x="16" y="84" class="node-tag">Caddy HTTP/3</text>
+    <text x="16" y="100" class="node-tag">FastAPI (auth_gate)</text>
+    <text x="16" y="116" class="node-tag">Portainer / Docker</text>
+    <text x="16" y="132" style="fill:#10b981; font-family:'JetBrains Mono', monospace; font-size:10px; font-weight:600;">Déclencheur WoWLAN</text>
+  </g>
+
+  <!-- NŒUD 4A : SERVICES CADDY & SOUS-DOMAINES (HAUT DROITE) -->
+  <g transform="translate(640, 75)">
+    <rect width="135" height="105" class="node-box" />
+    <circle cx="22" cy="24" r="12" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="1.2" />
+    <text x="42" y="28" class="node-title">astroytixo.info</text>
+    <text x="16" y="54" class="node-sub">Caddy Forward Auth</text>
+    <text x="16" y="70" class="node-tag">ssh / portainer / code</text>
+    <text x="16" y="86" class="node-tag">TLS Automatique</text>
+    <text x="16" y="100" style="fill:#94a3b8; font-family:'JetBrains Mono', monospace; font-size:9px;">API FastAPI :8000</text>
+  </g>
+
+  <!-- NŒUD 4B : PC LINUX RÉVEILLÉ VIA WOWLAN & NOVNC (BAS DROITE) -->
+  <g transform="translate(640, 265)">
+    <rect width="135" height="110" class="node-box" />
+    <circle cx="22" cy="24" r="12" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" stroke-width="1.2" />
+    <text x="42" y="28" class="node-title">PC Arch Linux</text>
+    <text x="16" y="54" class="node-sub">192.168.0.11 (Wi-Fi)</text>
+    <text x="16" y="72" style="fill:#10b981; font-family:'JetBrains Mono', monospace; font-size:10px; font-weight:600;">WoWLAN Suspend</text>
+    <text x="16" y="88" class="node-tag">noVNC :6080</text>
+    <text x="16" y="102" style="fill:#38bdf8; font-family:'JetBrains Mono', monospace; font-size:9px;">pc.noahbertrand.fr</text>
+  </g>
+
+  <!-- BADGES & DETAILS INFERIEURS -->
+  <g transform="translate(40, 395)">
+    <rect width="720" height="40" rx="8" fill="rgba(255, 255, 255, 0.03)" stroke="rgba(255, 255, 255, 0.06)" />
+    <text x="20" y="24" fill="#94a3b8" font-family="'JetBrains Mono', monospace" font-size="11">
+      <tspan fill="#818cf8">RPi 5 (8 Go):</tspan> Debian Bookworm (64-bit)  |  
+      <tspan fill="#38bdf8">Reverse Proxy:</tspan> Caddy Server (HTTP/3)  |  
+      <tspan fill="#10b981">WoWLAN:</tspan> Wi-Fi Broadcast 192.168.0.255  |  
+      <tspan fill="#f59e0b">Passerelle:</tspan> Box SFR (192.168.0.1)
+    </text>
+  </g>
+</svg>

@@ -1,39 +1,548 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" data-theme="dark">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="icon" href="assets/img/logo.png" type="image/png" sizes="96x96">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">   
-    <title>Noah BERTRAND</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noah BERTRAND — Portfolio & Développeur Logiciel</title>
+  <meta name="description"
+    content="Portfolio de Noah BERTRAND — Étudiant en BUT Informatique à l'IUT de Nantes. Projets en Go, Python, Kotlin, Infrastructure Système & Réseau (Raspberry Pi, WoWLAN) et applications métier.">
+  <link rel="canonical" href="https://www.noahbertrand.fr/">
+
+  <!-- OpenGraph / Réseaux Sociaux -->
+  <meta property="og:title" content="Noah BERTRAND — Portfolio & Développeur Logiciel">
+  <meta property="og:description"
+    content="Étudiant en BUT Informatique à l'IUT de Nantes. Découvrez mes projets en Go, Python, Kotlin, Systèmes & Réseau.">
+  <meta property="og:image" content="https://www.noahbertrand.fr/assets/img/index.png">
+  <meta property="og:url" content="https://www.noahbertrand.fr">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Noah BERTRAND — Portfolio & Développeur Logiciel">
+  <meta name="twitter:description"
+    content="Étudiant en BUT Informatique à l'IUT de Nantes. Découvrez mes projets en Go, Python, Kotlin, Systèmes & Réseau.">
+  <meta name="twitter:image" content="https://www.noahbertrand.fr/assets/img/index.png">
+
+  <!-- Données structurées JSON-LD (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.noahbertrand.fr/#person",
+        "name": "Noah Bertrand",
+        "jobTitle": "Développeur Logiciel & Web",
+        "url": "https://www.noahbertrand.fr",
+        "email": "luzrobertrand@gmail.com",
+        "sameAs": [
+          "https://github.com/Ytixo",
+          "https://www.linkedin.com/in/noah-bertrand-42a3a7375/"
+        ],
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "IUT de Nantes - Université de Nantes"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.noahbertrand.fr/#website",
+        "url": "https://www.noahbertrand.fr",
+        "name": "Noah BERTRAND — Portfolio & Développeur Logiciel",
+        "publisher": { "@id": "https://www.noahbertrand.fr/#person" }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/img/logo.png" type="image/png">
+
+  <!-- Polices Google : Inter & JetBrains Mono (Studio Minimaliste) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Feuilles de style CSS -->
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
 </head>
+
 <body>
-    <div class="pres-top">
-        <div class="pres-top-title">
-            <a href="index.html"><h2>Noah</h2>
-            <h2>Bertrand</h2>
+
+  <!-- ==========================================
+       BARRE DE NAVIGATION (NAVBAR)
+       ========================================== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#accueil" class="nav-brand">
+        <img src="assets/img/logo.png" alt="Noah Bertrand" class="nav-logo-img dark-logo" width="36" height="36">
+        <img src="assets/img/logo-light.png" alt="Noah Bertrand" class="nav-logo-img light-logo" width="36" height="36">
+        <span>Noah Bertrand</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#accueil" class="nav-link active">Accueil</a></li>
+          <li><a href="#projets" class="nav-link">Projets</a></li>
+          <li><a href="#competences" class="nav-link">Compétences</a></li>
+          <li><a href="#parcours" class="nav-link">Parcours</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Bouton Thème Sombre / Clair -->
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Changer de thème"
+          title="Bascule mode sombre/clair">
+          <i class="fa-solid fa-sun" id="theme-icon"></i>
+        </button>
+
+        <!-- Télécharger le CV -->
+        <a href="assets/docs/BERTRAND_Noah_CV.pdf" download="Noah_BERTRAND_CV.pdf" class="btn btn-sm btn-primary">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <span>Mon CV</span>
+        </a>
+
+        <!-- Menu Mobile Burger -->
+        <button class="nav-mobile-toggle" id="nav-mobile-toggle" aria-label="Menu mobile">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================
+         HERO SECTION
+         ========================================== -->
+    <section class="hero-section" id="accueil">
+      <div class="container hero-grid">
+        <div class="hero-content">
+
+          <div class="hero-greeting">
+            <span class="status-pill"><i class="fa-solid fa-circle" style="font-size: 0.5rem;"></i> BUT Informatique Nantes • En recherche de stage</span>
+          </div>
+
+          <h1 class="hero-title">
+            Noah Bertrand<br>
+            <span style="color: var(--text-secondary); font-size: 0.72em; font-weight: 600;">Développeur Logiciel &amp; Systèmes</span>
+          </h1>
+
+          <p class="hero-bio">
+            Étudiant en 2ème année de <strong>BUT Informatique à l'IUT de Nantes</strong> (concours Geipi).
+            Je conçois des applications logicielles réactives (Kotlin Multiplatform, Go, Python), 
+            des outils réseau et des infrastructures auto-hébergées durables.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projets" class="btn btn-primary btn-lg">
+              <span>Découvrir mes projets</span>
+              <i class="fa-solid fa-arrow-down"></i>
             </a>
-        </div>
-        <div class="menu">
-            <h2>menu ▼</h2>
-            <div class="menu-list">
-                <h2><a href="index.html">accueil</a></h2>
-                <h2><a href="projets.html">projets</a></h2>
-                <!-- <h2><a href="wip.html">expérience pro</a></h2> -->
-                <h2><a href="formation.html">formation</a></h2>
-                <h2><a href="Inspiration/BERTRAND_Noah_CV.pdf" download="Noah_BERTRAND_CV" class="download-btn">CV</a></h2>
+            <a href="assets/docs/BERTRAND_Noah_CV.pdf" download="Noah_BERTRAND_CV.pdf" class="btn btn-secondary btn-lg">
+              <i class="fa-solid fa-download"></i>
+              <span>Télécharger mon CV</span>
+            </a>
+            <a href="#contact" class="btn btn-outline btn-lg">
+              <i class="fa-solid fa-envelope"></i>
+              <span>Me contacter</span>
+            </a>
+          </div>
+
+          <div class="hero-stats-row">
+            <div class="stat-box">
+              <span class="stat-value">6</span>
+              <span class="stat-label">Projets Concrets</span>
             </div>
+            <div class="stat-box">
+              <span class="stat-value">2+</span>
+              <span class="stat-label">Années en Informatique</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-value">8+</span>
+              <span class="stat-label">Technologies Clés</span>
+            </div>
+          </div>
         </div>
+
+        <div class="hero-visual">
+          <div class="hero-avatar-card">
+            <div class="avatar-wrapper">
+              <img src="assets/img/index.webp" alt="Noah Bertrand" class="avatar-img" width="180" height="180">
+            </div>
+            <h2 class="hero-card-name">Noah Bertrand</h2>
+            <p class="hero-card-role">Étudiant BUT Informatique Nantes</p>
+
+            <div class="hero-card-badges">
+              <span class="tech-mini-tag"><i class="fa-solid fa-code"></i> Kotlin KMP</span>
+              <span class="tech-mini-tag"><i class="fa-solid fa-server"></i> Linux &amp; Caddy</span>
+              <span class="tech-mini-tag"><i class="fa-brands fa-golang"></i> Go</span>
+              <span class="tech-mini-tag"><i class="fa-brands fa-python"></i> Python</span>
+              <span class="tech-mini-tag"><i class="fa-solid fa-database"></i> SQL &amp; APIs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION PROJETS (DYNAMIQUE)
+         ========================================== -->
+    <section class="section-wrapper" id="projets">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Mes Réalisations</h2>
+          <p class="section-desc">
+            Explorez mes projets universitaires (SAÉ), mes réalisations pour clients réels et mes initiatives
+            personnelles.
+          </p>
+        </div>
+
+        <!-- Filtres par catégorie -->
+        <div class="projects-filters">
+          <button class="filter-btn active" data-filter="all">Tous les projets</button>
+          <button class="filter-btn" data-filter="systeme">Système & Infra</button>
+          <button class="filter-btn" data-filter="academique">Académique (SAÉ)</button>
+          <button class="filter-btn" data-filter="reseau">Réseau & Client/Serveur</button>
+          <button class="filter-btn" data-filter="logiciel">Logiciel Métier</button>
+        </div>
+
+        <!-- Grille injectée en JavaScript -->
+        <div class="projects-grid" id="projects-grid"></div>
+
+        <!-- Encart prochain projet -->
+        <div class="upcoming-box">
+          <div class="upcoming-icon">
+            <i class="fa-solid fa-rocket"></i>
+          </div>
+          <div class="upcoming-text">
+            <h4>Nouveaux projets en cours de réalisation 🚀</h4>
+            <p>
+              Actuellement sur de nouveaux projets en BUT Informatique (structures de données avancées, applications web
+              fullstack et futurs stages).
+              Ce portfolio est mis à jour régulièrement !
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ==========================================
+         SECTION COMPÉTENCES (BENTO GRID)
+         ========================================== -->
+    <section class="section-wrapper" id="competences">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fa-solid fa-layer-group"></i> Stack Technique</span>
+          <h2 class="section-title">Compétences & Technologies</h2>
+          <p class="section-desc">
+            Les langages, environnements de développement et méthodologies de conception que je pratique au quotidien.
+          </p>
+        </div>
+
+        <div class="skills-bento-grid">
+          <!-- Carte Langages -->
+          <div class="bento-card">
+            <div class="bento-header">
+              <div class="bento-icon"><i class="fa-solid fa-code"></i></div>
+              <h3>Langages de Programmation</h3>
+            </div>
+            <div class="skills-list" id="skills-languages-list"></div>
+          </div>
+
+          <!-- Carte Outils & Systèmes -->
+          <div class="bento-card">
+            <div class="bento-header">
+              <div class="bento-icon"><i class="fa-solid fa-toolbox"></i></div>
+              <h3>Outils & Environnements</h3>
+            </div>
+            <div class="skills-list" id="skills-tools-list"></div>
+          </div>
+
+          <!-- Carte Méthodologies & Bonnes Pratiques -->
+          <div class="bento-card">
+            <div class="bento-header">
+              <div class="bento-icon"><i class="fa-solid fa-diagram-project"></i></div>
+              <h3>Méthodologies Logicielles</h3>
+            </div>
+            <div class="skills-list" id="skills-methods-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION PARCOURS & EXPÉRIENCES
+         ========================================== -->
+    <section class="section-wrapper" id="parcours" style="background: var(--bg-surface-elevated); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fa-solid fa-graduation-cap"></i> Parcours</span>
+          <h2 class="section-title">Formation & Expériences</h2>
+          <p class="section-desc">
+            Mon cursus académique en génie informatique et mes expériences pratiques sur le terrain.
+          </p>
+        </div>
+
+        <div
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 3rem; max-width: 1000px; margin: 0 auto;">
+          <!-- Formation Académique -->
+          <div>
+            <h3 style="margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem;">
+              <i class="fa-solid fa-building-columns" style="color: var(--primary);"></i>
+              Formation Académique
+            </h3>
+            <div class="timeline-track" id="formation-timeline"></div>
+          </div>
+
+          <!-- Expériences & Missions -->
+          <div>
+            <h3 style="margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem;">
+              <i class="fa-solid fa-briefcase" style="color: var(--accent-cyan);"></i>
+              Expériences Pratiques
+            </h3>
+            <div class="timeline-track" id="experiences-timeline"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION CONTACT
+         ========================================== -->
+    <section class="section-wrapper" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fa-solid fa-paper-plane"></i> Contact</span>
+          <h2 class="section-title">Restons en contact !</h2>
+          <p class="section-desc">
+            Vous recherchez un étudiant motivé et rigoureux pour un stage ou une alternance ? N'hésitez pas à me
+            contacter.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Carte Email avec Copie en 1 clic -->
+          <div class="contact-card" id="copy-email-card" role="button" tabindex="0" title="Cliquez pour copier l'email"
+            aria-label="Copier l'adresse email de Noah Bertrand dans le presse-papier">
+            <div class="contact-card-icon"><i class="fa-solid fa-envelope"></i></div>
+            <h4>Email Professionnel</h4>
+            <p>luzrobertrand@gmail.com</p>
+            <div class="contact-action-hint">
+              <i class="fa-solid fa-copy"></i> Cliquer pour copier l'adresse
+            </div>
+          </div>
+
+          <!-- Carte LinkedIn -->
+          <a href="https://www.linkedin.com/in/noah-bertrand-42a3a7375/" target="_blank" rel="noopener noreferrer"
+            class="contact-card" aria-label="Profil LinkedIn de Noah Bertrand">
+            <div class="contact-card-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+            <h4>LinkedIn</h4>
+            <p>Noah Bertrand</p>
+            <div class="contact-action-hint">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Consulter mon profil
+            </div>
+          </a>
+
+          <!-- Carte GitHub -->
+          <a href="https://github.com/Ytixo" target="_blank" rel="noopener noreferrer" class="contact-card"
+            aria-label="Profil GitHub de Noah Bertrand">
+            <div class="contact-card-icon"><i class="fa-brands fa-github"></i></div>
+            <h4>GitHub</h4>
+            <p>@Ytixo</p>
+            <div class="contact-action-hint">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Consulter mes dépôts
+            </div>
+          </a>
+
+          <!-- Carte CV -->
+          <a href="assets/docs/BERTRAND_Noah_CV.pdf" download="Noah_BERTRAND_CV.pdf" class="contact-card"
+            aria-label="Télécharger le CV de Noah Bertrand au format PDF">
+            <div class="contact-card-icon"><i class="fa-solid fa-file-pdf"></i></div>
+            <h4>Curriculum Vitae</h4>
+            <p>Format PDF complet</p>
+            <div class="contact-action-hint">
+              <i class="fa-solid fa-download"></i> Télécharger le document
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">Noah Bertrand</div>
+      <p style="color: var(--text-muted); max-width: 500px;">
+        Étudiant en BUT Informatique à l'IUT de Nantes. Développeur passionné par la conception de solutions logicielles
+        durables et performantes.
+      </p>
+
+      <nav class="footer-nav">
+        <a href="#accueil">Accueil</a>
+        <a href="#projets">Projets</a>
+        <a href="#competences">Compétences</a>
+        <a href="#parcours">Parcours</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/noah-bertrand-42a3a7375/" target="_blank" rel="noopener noreferrer"
+          class="social-circle-btn" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/Ytixo" target="_blank" rel="noopener noreferrer" class="social-circle-btn"
+          aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="mailto:luzrobertrand@gmail.com" class="social-circle-btn" aria-label="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+        <a href="assets/docs/BERTRAND_Noah_CV.pdf" download="Noah_BERTRAND_CV.pdf" class="social-circle-btn"
+          aria-label="CV">
+          <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Noah BERTRAND — Tous droits réservés.</span>
+        <span>Conçu avec HTML5, CSS3 Moderne &amp; JavaScript Natif.</span>
+      </div>
     </div>
-    <div class="pres-mid">
-        <img src="assets/img/index.png" alt="Mid" width="15%" height="35%">
-        <p>Salut, moi c'est <br> Noah Bertrand <br> J'ai 19 ans, je suis en <br> 1ere année d'informatique <br> Voici mon portfolio !</p>
+  </footer>
+
+  <!-- ==========================================
+       MODALE DE DÉTAIL PROJET (DEEP DIVE & LIGHTBOX)
+       ========================================== -->
+  <div class="modal-backdrop" id="project-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h3 id="modal-title">Titre du Projet</h3>
+          <p id="modal-subtitle">Sous-titre / Catégorie</p>
+        </div>
+        <button class="modal-close-btn" id="modal-close-btn" aria-label="Fermer la modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-scrollable-body">
+        <!-- Diaporama d'images -->
+        <div>
+          <div class="modal-slider-box" id="modal-slider-box" role="button" tabindex="0"
+            title="Cliquer pour afficher en plein écran" aria-label="Afficher les captures en plein écran">
+            <button class="slider-nav-btn slider-prev" id="modal-slider-prev" aria-label="Image précédente">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <img src="" alt="Capture du projet" class="modal-slide-img" id="modal-slide-img">
+            <button class="slider-nav-btn slider-next" id="modal-slider-next" aria-label="Image suivante">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <span class="slider-counter" id="modal-slider-counter">1 / 1</span>
+            <div class="modal-slider-zoom-hint">
+              <i class="fa-solid fa-expand"></i>
+              <span>Plein écran</span>
+            </div>
+          </div>
+          <div class="modal-slider-dots" id="modal-slider-dots"></div>
+        </div>
+
+        <!-- Description complète -->
+        <div>
+          <h4 class="modal-subhead"><i class="fa-solid fa-circle-info"></i> Présentation du projet</h4>
+          <p id="modal-desc" style="color: var(--text-secondary); line-height: 1.7;"></p>
+        </div>
+
+        <!-- Grille détails : Fonctionnalités & Défis -->
+        <div class="modal-details-grid">
+          <div>
+            <h4 class="modal-subhead"><i class="fa-solid fa-list-check"></i> Fonctionnalités clés</h4>
+            <ul class="modal-feature-list" id="modal-features-list"></ul>
+          </div>
+          <div>
+            <h4 class="modal-subhead"><i class="fa-solid fa-gears"></i> Défis techniques résolus</h4>
+            <ul class="modal-feature-list" id="modal-challenges-list"></ul>
+          </div>
+        </div>
+
+        <!-- Technologies -->
+        <div>
+          <h4 class="modal-subhead"><i class="fa-solid fa-tags"></i> Technologies employées</h4>
+          <div class="project-tags-list" id="modal-tags-wrap"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div id="modal-actions-wrap" style="display: flex; gap: 0.75rem; flex-wrap: wrap;"></div>
+        <button class="btn btn-sm btn-secondary" id="modal-footer-close-btn">
+          Fermer
+        </button>
+      </div>
     </div>
-    <div class="pres-bottom">
-        <h1>Étudiant Informatique</h1>
+  </div>
+
+  <!-- ==========================================
+       SYSTÈME DE VISUALISATION D'IMAGES & LIGHTBOX (SLIDER)
+       ========================================== -->
+  <div class="image-lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-overlay" id="lightbox-overlay"></div>
+    <div class="lightbox-container">
+      <!-- Barre d'outils supérieure -->
+      <div class="lightbox-header">
+        <div class="lightbox-info">
+          <span class="lightbox-title" id="lightbox-title">Titre du Projet</span>
+          <span class="lightbox-counter" id="lightbox-counter">1 / 1</span>
+        </div>
+        <div class="lightbox-actions">
+          <button class="lightbox-btn" id="lightbox-fullscreen-btn" aria-label="Plein écran navigateur"
+            title="Plein écran (F)">
+            <i class="fa-solid fa-expand" id="lightbox-fs-icon"></i>
+          </button>
+          <button class="lightbox-btn lightbox-close-btn" id="lightbox-close-btn" aria-label="Fermer"
+            title="Fermer (Échap)">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Scène centrale avec image et flèches de navigation -->
+      <div class="lightbox-stage">
+        <button class="lightbox-nav-btn lightbox-prev" id="lightbox-prev" aria-label="Image précédente"
+          title="Précédent (Flèche gauche)">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <div class="lightbox-img-wrap" id="lightbox-img-wrap">
+          <img src="" alt="" class="lightbox-img" id="lightbox-img">
+        </div>
+        <button class="lightbox-nav-btn lightbox-next" id="lightbox-next" aria-label="Image suivante"
+          title="Suivant (Flèche droite)">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- Barre inférieure avec bande de miniatures (thumbnails) -->
+      <div class="lightbox-footer">
+        <div class="lightbox-thumbnails-track" id="lightbox-thumbnails-track"></div>
+      </div>
     </div>
+  </div>
+
+  <!-- Fichiers JavaScript -->
+  <script src="assets/js/projects-data.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
-</html>     
+
+</html>
