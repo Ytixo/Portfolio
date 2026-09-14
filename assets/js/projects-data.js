@@ -241,8 +241,7 @@ const SKILLS_DATA = {
     { name: "JavaScript / Node.js", level: "Intermédiaire", desc: "Express, API REST, DOM, ES6+, WebSockets", icon: "fa-brands fa-node-js" },
     { name: "Go (Golang)", level: "Intermédiaire", desc: "Simulation physique, typage statique, concurrence", icon: "fa-brands fa-golang" },
     { name: "SQL", level: "Avancé", desc: "PostgreSQL, MySQL, agrégations complexes, métriques temporelles", icon: "fa-solid fa-database" },
-    { name: "HTML5 / CSS3", level: "Avancé", desc: "Flexbox, Grid, animations, responsive design", icon: "fa-brands fa-html5" },
-    { name: "C / C++", level: "Fondamentaux", desc: "Pointeurs, allocation mémoire, bas niveau", icon: "fa-solid fa-microchip" }
+    { name: "HTML5 / CSS3", level: "Avancé", desc: "Flexbox, Grid, animations, responsive design", icon: "fa-brands fa-html5" }
   ],
   tools: [
     { name: "ComfyUI & IA Générative", desc: "Workflows Wan 2.2/2.7, SAM 2, API prompts, custom nodes", icon: "fa-solid fa-wand-magic-sparkles" },
@@ -266,8 +265,8 @@ const SKILLS_DATA = {
 
 const TIMELINE_DATA = [
   {
-    period: "2025 — 2026 (En cours)",
-    title: "BUT Informatique — 1ère année",
+    period: "2025 — 2027 (En cours)",
+    title: "BUT Informatique — 2ème année",
     institution: "IUT de Nantes • Université de Nantes",
     subtitle: "Parcours PeiP D (Concours Geipi Polytech)",
     badge: "Études Supérieures",
@@ -291,7 +290,7 @@ const EXPERIENCES_DATA = [
     role: "Stagiaire Développeur Logiciel & IA Générative",
     company: "Idia Tech (Nantes)",
     desc: "Conception et développement de la suite de post-production cinématographique Mocapia : interfaces Compose Multiplatform (Desktop), agent conversationnel OpenAI avec Function Calling PostgreSQL en Node.js, outils IA de rotoscopie et vidéo (Wan VACE 2.2, SAM 2, LipSync), extraction accélérée FFmpeg et backend GPU Cloud.",
-    type: "Stage en Entreprise 🎬"
+    type: "Stage en Entreprise"
   },
   {
     period: "Depuis 2025",

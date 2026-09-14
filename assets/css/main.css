@@ -2,7 +2,9 @@
    MAIN STYLES & LAYOUT — STUDIO MINIMALISTE (NOAH BERTRAND)
    ============================================================================== */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -61,7 +63,12 @@ img {
    TYPOGRAPHIE & EN-TÊTES DE SECTION
    ============================================================================== */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   color: var(--text-primary);
   line-height: 1.2;
@@ -172,6 +179,7 @@ h1, h2, h3, h4, h5, h6 {
 [data-theme="dark"] .light-logo {
   display: none !important;
 }
+
 [data-theme="dark"] .dark-logo {
   display: block !important;
 }
@@ -179,6 +187,7 @@ h1, h2, h3, h4, h5, h6 {
 [data-theme="light"] .dark-logo {
   display: none !important;
 }
+
 [data-theme="light"] .light-logo {
   display: block !important;
 }
@@ -323,7 +332,7 @@ h1, h2, h3, h4, h5, h6 {
   border-top: 1px solid var(--border-subtle);
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
